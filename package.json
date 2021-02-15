@@ -8,11 +8,15 @@
     "start": "next start"
   },
   "dependencies": {
+    "@emotion/react": "^11.1.5",
+    "dotenv-safe": "^8.2.0",
     "next": "10.0.6",
+    "postgres": "^1.0.2",
     "react": "17.0.1",
     "react-dom": "17.0.1"
   },
   "devDependencies": {
+    "@emotion/babel-plugin": "^11.2.0",
     "@types/node": "14.14.25",
     "@types/react": "17.0.1",
     "@types/react-dom": "17.0.0",

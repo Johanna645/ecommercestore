@@ -59,7 +59,7 @@ export default function Layout(props) {
               </p>
             </div>
           </div>
-          <h2>
+          <p>
             {' '}
             <Link href="/">
               <a>home</a>
@@ -75,8 +75,18 @@ export default function Layout(props) {
             </Link>{' '}
             <Link href="/about">
               <a>about</a>
+            </Link>{' '}
+            <Link href="/shoppingcart">
+              <a>
+                <Image
+                  src="/pictures/shoppingcart.jpg"
+                  alt="shoppingcart"
+                  width={30}
+                  height={30}
+                />
+              </a>
             </Link>
-          </h2>
+          </p>
         </nav>
       </header>
 

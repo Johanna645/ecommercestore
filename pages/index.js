@@ -46,7 +46,11 @@ export default function Home() {
           <p>Where tradition meets trend</p>
         </div>
         <div>
-          <button>Shop now</button>
+          <div>
+            <Link href="/products">
+              <button type="button">SHOP NOW</button>
+            </Link>
+          </div>
         </div>
       </div>
     </Layout>

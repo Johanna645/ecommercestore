@@ -11,8 +11,9 @@ const headerStyles = css`
   text-align: left;
 
   color: #005f6a;
-  font-size: 16;
+  font-size: 24;
   font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold
 
   margin-bottom: 10px;
 
@@ -94,14 +95,12 @@ export default function Layout(props) {
                   <a>about</a>
                 </Link>{' '}
                 <Link href="/shoppingcart">
-                  <a>
-                    <Image
-                      src="/pictures/shoppingcart.jpg"
-                      alt="shoppingcart"
-                      width={30}
-                      height={30}
-                    />
-                  </a>
+                  <Image
+                    src="/pictures/shoppingcart.jpg"
+                    alt="shoppingcart"
+                    width={30}
+                    height={30}
+                  />
                 </Link>
               </p>
             </div>

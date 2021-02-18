@@ -25,7 +25,7 @@ export default function Beanies() {
         <div css={productStyles}>
           <div>
             <div>
-              <Link href="/products/beanies">
+              <Link href="/beanieBlue">
                 <Image
                   src="/pictures/haubeBlau.jpg"
                   height={144}
@@ -33,7 +33,6 @@ export default function Beanies() {
                   alt="haubeBlau"
                 />
               </Link>
-              <button>currently out of stock</button>
             </div>
             <div>
               <Link href="/beanieBee">
@@ -46,7 +45,7 @@ export default function Beanies() {
               </Link>
             </div>
             <div>
-              <Link href="/products/beanies">
+              <Link href="/beanieBasic">
                 <Image
                   src="/pictures/haubeGrau.jpg"
                   height={144}
@@ -54,7 +53,6 @@ export default function Beanies() {
                   alt="haubeGrau"
                 />
               </Link>
-              <button>currently out of stock</button>
             </div>
           </div>
           <div>
@@ -70,7 +68,7 @@ export default function Beanies() {
               <button>currently out of stock</button>
             </div>
             <div>
-              <Link href="/products/gloves">
+              <Link href="/coolGrey">
                 <Image
                   src="/pictures/glovesGrau.jpg"
                   height={144}
@@ -78,10 +76,9 @@ export default function Beanies() {
                   alt="glovesGrau"
                 />
               </Link>
-              <button>currently out of stock</button>
             </div>
             <div>
-              <Link href="/products/gloves">
+              <Link href="/flashyMittens">
                 <Image
                   src="/pictures/flashyMittens.jpg"
                   height={144}

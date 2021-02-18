@@ -22,32 +22,33 @@ const productStyles = css`
   }
 `;
 
-export default function BeanieBee() {
+export default function BeanieBlue() {
   return (
     <Layout>
       <Head>
-        <title>BeanieBee</title>
+        <title>BeanieBlue</title>
       </Head>
       <div css={productStyles}>
         <div>
           <Image
-            src="/pictures/haubeGestreift.jpg"
+            src="/pictures/haubeBlau.jpg"
             height={400}
             width={400}
-            alt="haubeGestreift"
+            alt="haubeBlau"
           />
         </div>
         <div>
           <textbox>
-            <h2>BEANIE BEE</h2>
+            <h2>BEANIE BLUE</h2>
             <p>
-              This chunky unisex beanie is a must-have!
+              This thin and chic but warm beanie is a perfect fit for a day in
+              the city.
               <br />
-              Handknit in super soft wool, it's perfect for the winter season.
+              Handknit with a decorative pattern.
               <br />
               Size: One size fits most.
               <br />
-              Material: 100%soft wool
+              Material: 100%soft cashmire wool
               <br />
               Care instructions: handwash only
             </p>

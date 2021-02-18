@@ -4,7 +4,22 @@ import { css } from '@emotion/react';
 import Image from 'next/image';
 
 const headerStyles = css`
+  /* display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 20% 80%; */
   border-top: 8px solid #ffe570;
+  text-align: left;
+
+  color: #005f6a;
+  font-size: 16;
+  font-family: Arial, Helvetica, sans-serif;
+
+  margin-bottom: 10px;
+
+  a {
+    color: #005f6a;
+    margin-left: 300px;
+  }
 
   a + a {
     margin-left: 15px;
@@ -19,7 +34,7 @@ const logoStyle = css`
   font-size: 16;
   font-family: Arial, Helvetica, sans-serif;
   background-color: #dedede;
-  width: 300px;
+  width: 220px;
 
   padding: 20px;
 `;
@@ -42,51 +57,55 @@ export default function Layout(props) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <header css={headerStyles}>
+      <header>
         <nav>
-          <div css={logoStyle}>
-            <div>
-              <Image
-                src="/pictures/haystack.jpg"
-                height={80}
-                width={80}
-                alt="haystack"
-              />
+          <div css={headerStyles}>
+            <div css={logoStyle}>
+              <div>
+                <Image
+                  src="/pictures/haystack.jpg"
+                  height={80}
+                  width={80}
+                  alt="haystack"
+                />
+              </div>
+              <div>
+                <p>
+                  Haystack <br /> Needlework
+                </p>
+              </div>
             </div>
             <div>
               <p>
-                Haystack <br /> Needlework
+                {' '}
+                <Link href="/">
+                  <a>home</a>
+                </Link>{' '}
+                <Link href="/products/beanies">
+                  <a>beanies</a>
+                </Link>{' '}
+                <Link href="/products/scarves">
+                  <a>scarves</a>
+                </Link>{' '}
+                <Link href="/products/gloves">
+                  <a>gloves</a>
+                </Link>{' '}
+                <Link href="/about">
+                  <a>about</a>
+                </Link>{' '}
+                <Link href="/shoppingcart">
+                  <a>
+                    <Image
+                      src="/pictures/shoppingcart.jpg"
+                      alt="shoppingcart"
+                      width={30}
+                      height={30}
+                    />
+                  </a>
+                </Link>
               </p>
             </div>
           </div>
-          <p>
-            {' '}
-            <Link href="/">
-              <a>home</a>
-            </Link>{' '}
-            <Link href="/products/beanies">
-              <a>beanies</a>
-            </Link>{' '}
-            <Link href="/products/scarves">
-              <a>scarves</a>
-            </Link>{' '}
-            <Link href="/products/gloves">
-              <a>gloves</a>
-            </Link>{' '}
-            <Link href="/about">
-              <a>about</a>
-            </Link>{' '}
-            <Link href="/shoppingcart">
-              <a>
-                <Image
-                  src="/pictures/shoppingcart.jpg"
-                  alt="shoppingcart"
-                  width={30}
-                  height={30}
-                />
-              </a>
-            </Link>
-          </p>
         </nav>
       </header>
 

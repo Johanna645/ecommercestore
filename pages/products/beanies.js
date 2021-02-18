@@ -32,13 +32,7 @@ export default function Beanies() {
           alt="haubeGrau"
         />
       </span>
-      <p>
-        This chunky unisex beanie is a must-have! Handknit in super soft wool,
-        it's perfect for the winter season. One size fits all. Material: 100%
-        soft wool Care instructions: handwash only Size: One size fits most.
-        Every item is hand knit when the order is placed. Please allow 5
-        workingdays for creating this item.
-      </p>
+      <p></p>
     </Layout>
   );
 }

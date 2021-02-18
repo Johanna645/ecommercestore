@@ -22,6 +22,15 @@ const landingPage = css`
   text-align: center;
   color: white;
   font-size: 60px;
+
+  button {
+    background-color: #005f6a;
+    color: white;
+    //height: 80px;
+    padding: 10px;
+    font-size: 50;
+    border-radius: 8px;
+  }
 `;
 
 export default function Home() {
@@ -30,29 +39,29 @@ export default function Home() {
       <Head>
         <title>Haystack Needlework</title>
       </Head>
-      <div css={landingPage}>
-        <div>
-          <Image
-            src="/pictures/bluePictureWool.jpg"
-            alt="bluePictureWool"
-            height={600}
-            width={1500}
-            // layout="fill"
-            // objectFit="contain"
-            // objectPosition="center"
-          />
-        </div>
-        <div>
-          <p>Where tradition meets trend</p>
-        </div>
-        <div>
+      <body>
+        <div css={landingPage}>
+          <div>
+            <Image
+              src="/pictures/yarnOnTable.jpg"
+              alt="yarnOnTable"
+              height={600}
+              width={1500}
+              //layout="fill"
+              //objectFit="contain"
+              //objectPosition="center"
+            />
+          </div>
+          <div>
+            <p>Where tradition meets trend</p>
+          </div>
           <div>
             <Link href="/products">
               <button type="button">SHOP NOW</button>
             </Link>
           </div>
         </div>
-      </div>
+      </body>
     </Layout>
   );
 }

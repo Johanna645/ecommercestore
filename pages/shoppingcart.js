@@ -9,12 +9,22 @@ const cartStyle = css`
   margin-bottom: 50px;
   margin-left: 50px;
   text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
 
   table {
     margin-top: 10px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     text-align: center;
+  }
+
+  button {
+    background-color: #005f6a;
+    color: white;
+    //height: 80px;
+    padding: 10px;
+    font-size: 50;
+    border-radius: 8px;
   }
 `;
 
@@ -34,10 +44,10 @@ export default function Shoppingcart() {
 
         <div>
           <table>
-            <th>Product</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Total</th>
+            <th>PRODUCT</th>
+            <th>PRICE</th>
+            <th>QUANTITY</th>
+            <th>TOTAL</th>
             <tr />
             <tr />
             <tr />
@@ -47,20 +57,20 @@ export default function Shoppingcart() {
             <tr />
             <tr />
             <tr />
-            <tr>Shipping cost 8.00€</tr>
+            <tr>SHIPPING COSTS 8.00€</tr>
           </table>
           <table>
             <tr />
             <tr />
             <tr />
             <tr>
-              <strong>Grand total: €</strong>
+              <strong>GRAND TOTAL: €</strong>
             </tr>
           </table>
         </div>
         <div>
           <Link href="/checkout">
-            <button type="button">Go to checkout</button>
+            <button type="button">GO TO CHECKOUT</button>
           </Link>
         </div>
       </div>

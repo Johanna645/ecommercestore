@@ -13,9 +13,10 @@ import { css } from '@emotion/react';
 const landingPage = css`
   p {
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
+    font-family: Arial, Helvetica, sans-serif;
   }
 
   position: relative;
@@ -53,7 +54,7 @@ export default function Home() {
             />
           </div>
           <div>
-            <p>Where tradition meets trend</p>
+            <p>WHERE TRADITION MEETS TREND</p>
           </div>
           <div>
             <Link href="/products">

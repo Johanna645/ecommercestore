@@ -4,11 +4,11 @@ import { css } from '@emotion/react';
 import Image from 'next/image';
 
 const headerStyles = css`
-  /* display: grid;
+  display: grid;
   grid-template-columns: 1fr 1fr;
-  width: 20% 80%; */
+  width: 20% 80%;
   border-top: 8px solid #ffe570;
-  text-align: left;
+  //text-align: left;
 
   color: #005f6a;
   font-size: 24;
@@ -19,7 +19,7 @@ const headerStyles = css`
 
   a {
     color: #005f6a;
-    margin-left: 300px;
+    margin-left: 10px;
   }
 
   a + a {
@@ -34,7 +34,7 @@ const logoStyle = css`
   color: white;
   font-size: 16;
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #dedede;
+  background-color: #cccccc;
   width: 220px;
 
   padding: 20px;
@@ -61,7 +61,7 @@ export default function Layout(props) {
       <header>
         <nav>
           <div css={headerStyles}>
-            <div css={logoStyle}>
+            <span css={logoStyle}>
               <div>
                 <Image
                   src="/pictures/haystack.jpg"
@@ -75,10 +75,13 @@ export default function Layout(props) {
                   Haystack <br /> Needlework
                 </p>
               </div>
-            </div>
+            </span>
             <div>
               <p>
-                {' '}
+                <br />
+                <br />
+                <br />
+                <br />{' '}
                 <Link href="/">
                   <a>HOME</a>
                 </Link>{' '}

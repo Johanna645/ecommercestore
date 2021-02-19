@@ -3,6 +3,11 @@ import { css } from '@emotion/react';
 import Layout from '../components/Layout';
 import Link from 'next/link';
 
+const textStyles = css`
+  font-family: Arial, Helvetica, sans-serif;
+  margin-left: 380px;
+`;
+
 const formStyle = css`
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -12,8 +17,17 @@ const formStyle = css`
   line-height: 1.1;
   font-family: Arial, Helvetica, sans-serif;
 
-  margin-left: 120px;
+  margin-left: 240px;
   //margin-right: 40px;
+
+  button {
+    background-color: #005f6a;
+    color: white;
+    //height: 80px;
+    padding: 10px;
+    font-size: 50;
+    border-radius: 8px;
+  }
 `;
 
 export default function Checkout() {
@@ -24,12 +38,11 @@ export default function Checkout() {
       </Head>
 
       <div>
-        <div>
+        <div css={textStyles}>
           <h2>The grand total of your order is: </h2>
 
           <h3>Please fill out the form underneath to continue.</h3>
         </div>
-
         <div css={formStyle}>
           <div>
             <h2>Shipping:</h2>
@@ -98,7 +111,7 @@ export default function Checkout() {
             <br />
             <div>
               <Link href="/thanks">
-                <button type="button">Submit</button>
+                <button type="button">SUBMIT</button>
               </Link>
             </div>
           </div>

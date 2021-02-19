@@ -9,9 +9,11 @@ const productStyles = css`
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 40px;
   grid-row-gap: 10px;
+`;
 
-  margin-left: 20px;
-  margin-right: 20px;
+const textStyles = css`
+  margin-top: 40px;
+  font-family: Arial, Helvetica, sans-serif;
 `;
 
 export default function Products() {
@@ -21,7 +23,9 @@ export default function Products() {
         <title>Products</title>
       </Head>
       <div>
-        <h2>Have a look at our marvelous products on one go:</h2>
+        <div css={textStyles}>
+          <h1>ALL PRODUCTS</h1>
+        </div>
         <div css={productStyles}>
           <div>
             <div>

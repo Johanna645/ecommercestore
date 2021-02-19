@@ -13,13 +13,17 @@ const productStyles = css`
   font-weight: bolder;
 `;
 
+const textStyles = css`
+  font-family: Arial, Helvetica, sans-serif;
+`;
+
 export default function Beanies() {
   return (
     <Layout>
       <Head>
         <title>Beanies</title>
       </Head>
-      <h1>BEANIES</h1>
+      <h1 css={textStyles}>BEANIES</h1>
       <div css={productStyles}>
         <div>
           <Link href="/beanieBlue">

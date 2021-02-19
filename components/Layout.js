@@ -13,7 +13,7 @@ const headerStyles = css`
   color: #005f6a;
   font-size: 24;
   font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold
+  font-weight: bold;
 
   margin-bottom: 10px;
 
@@ -80,27 +80,25 @@ export default function Layout(props) {
               <p>
                 {' '}
                 <Link href="/">
-                  <a>home</a>
+                  <a>HOME</a>
                 </Link>{' '}
+                <Link href="/products">
+                  <a>PRODUCTS</a>
+                </Link>
                 <Link href="/products/beanies">
-                  <a>beanies</a>
+                  <a>BEANIES</a>
                 </Link>{' '}
                 <Link href="/products/scarves">
-                  <a>scarves</a>
+                  <a>SCARVES</a>
                 </Link>{' '}
                 <Link href="/products/gloves">
-                  <a>gloves</a>
+                  <a>GLOVES</a>
                 </Link>{' '}
                 <Link href="/about">
-                  <a>about</a>
+                  <a>ABOUT</a>
                 </Link>{' '}
                 <Link href="/shoppingcart">
-                  <Image
-                    src="/pictures/shoppingcart.jpg"
-                    alt="shoppingcart"
-                    width={30}
-                    height={30}
-                  />
+                  <a>CART</a>
                 </Link>
               </p>
             </div>

@@ -14,7 +14,7 @@ const productStyles = css`
   margin-right: 20px;
 `;
 
-export default function Beanies() {
+export default function Products() {
   return (
     <Layout>
       <Head>
@@ -57,7 +57,7 @@ export default function Beanies() {
           </div>
           <div>
             <div>
-              <Link href="/products/gloves">
+              <Link href="/sunnyMetallic">
                 <Image
                   src="/pictures/glovesGelb.jpg"
                   height={144}
@@ -65,7 +65,6 @@ export default function Beanies() {
                   alt="glovesGelb"
                 />
               </Link>
-              <button>currently out of stock</button>
             </div>
             <div>
               <Link href="/coolGrey">
@@ -86,13 +85,12 @@ export default function Beanies() {
                   alt="flashyMittens"
                 />
               </Link>
-              <button>currently out of stock</button>
             </div>
           </div>
 
           <div>
             <div>
-              <Link href="/products/scarves">
+              <Link href="/whiteMohair">
                 <Image
                   src="/pictures/schalWeiss.jpg"
                   height={144}
@@ -100,10 +98,9 @@ export default function Beanies() {
                   alt="schalWeiss"
                 />
               </Link>
-              <button>currently out of stock</button>
             </div>
             <div>
-              <Link href="/products/scarves">
+              <Link href="/loopSmart">
                 <Image
                   src="/pictures/schalTube.jpg"
                   height={144}
@@ -111,10 +108,9 @@ export default function Beanies() {
                   alt="schalTube"
                 />
               </Link>
-              <button>currently out of stock</button>
             </div>
             <div>
-              <Link href="/products/scarves">
+              <Link href="/scarfAndStripes">
                 <Image
                   src="/pictures/schalGestreift.jpg"
                   height={144}
@@ -122,7 +118,6 @@ export default function Beanies() {
                   alt="schalGestreift"
                 />
               </Link>
-              <button>currently out of stock</button>
             </div>
           </div>
         </div>

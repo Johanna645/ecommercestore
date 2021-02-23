@@ -16,7 +16,15 @@ const textStyles = css`
   font-family: Arial, Helvetica, sans-serif;
 `;
 
-export default function Products() {
+//const products = [{productName, picture, price, productInfo}]
+
+export async function getServerSideProps() {
+  const {getProducts} = await import ('../../util/database');
+  const products = getProducts();
+  return {props: {products: products}};
+}
+
+export default function Products(props) {
   return (
     <Layout>
       <Head>
@@ -27,7 +35,16 @@ export default function Products() {
           <h1>ALL PRODUCTS</h1>
         </div>
         <div css={productStyles}>
-          <div>
+
+          <ul>
+            {props.products.map((product) =>
+            <li key= {`product-${product.productName}`}>
+              <Link href=({`/products/${product.productName}
+              <a>{product.picture}</a>`})
+              </Link>
+            </li>}
+          </ul>
+          {/*  <div>
             <div>
               <Link href="/beanieBlue">
                 <Image
@@ -123,7 +140,7 @@ export default function Products() {
                 />
               </Link>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </Layout>

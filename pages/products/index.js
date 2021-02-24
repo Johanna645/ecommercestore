@@ -3,6 +3,8 @@ import Head from 'next/head';
 import Layout from '../../components/Layout';
 import Image from 'next/image';
 import { css } from '@emotion/react';
+//import postgres from 'postgres';
+//require('dotenv-safe').config();
 
 const productStyles = css`
   display: grid;
@@ -16,12 +18,16 @@ const textStyles = css`
   font-family: Arial, Helvetica, sans-serif;
 `;
 
-//const products = [{productName, picture, price, productInfo}]
+//const sql = postgres();
 
+//const products = [{ productName, picture, price, productInfo }]; // in table i have only product_name and product_price set
+
+// this function is for server only, for example connect to database
 export async function getServerSideProps() {
-  const {getProducts} = await import ('../../util/database');
-  const products = getProducts();
-  return {props: {products: products}};
+  const { getProducts } = await import('../../util/database');
+  const products = await getProducts();
+
+  return { props: { products: products } };
 }
 
 export default function Products(props) {
@@ -35,24 +41,27 @@ export default function Products(props) {
           <h1>ALL PRODUCTS</h1>
         </div>
         <div css={productStyles}>
-
           <ul>
-            {props.products.map((product) =>
-            <li key= {`product-${product.productName}`}>
-              <Link href=({`/products/${product.productName}
-              <a>{product.picture}</a>`})
-              </Link>
-            </li>}
+            {props.products.map((product) => (
+              <li key={`product-${product.productName}`}>
+                <Link href={`/products/${product.productName}`}>
+                  <a>
+                    {product.id}
+                    <Image
+                      src={`/pictures/${product.id}.jpg`}
+                      height={144}
+                      width={144}
+                      alt=""
+                    />
+                  </a>
+                </Link>
+              </li>
+            ))}
           </ul>
-          {/*  <div>
+          {/* <div>
             <div>
               <Link href="/beanieBlue">
-                <Image
-                  src="/pictures/haubeBlau.jpg"
-                  height={144}
-                  width={144}
-                  alt="haubeBlau"
-                />
+
               </Link>
             </div>
             <div>
@@ -140,7 +149,7 @@ export default function Products(props) {
                 />
               </Link>
             </div>
-          </div> */}
+          </div>*/}
         </div>
       </div>
     </Layout>

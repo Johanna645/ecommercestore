@@ -1,67 +1,19 @@
-export function getProducts() {
-  // hier kommt dann das richtige connect to database, das fehtl noch
-  return [
-    {
-      productName: 'BEANIE BASIC',
-      picture: haubeGrau.jpg,
-      price: '20€',
-      productInfo: 'To be added soon',
-    },
+import postgres from 'postgres';
+require('dotenv-safe').config();
+const camelcaseKeys = require('camelcase-keys');
 
-    {
-      productName: 'BEANIE BEE',
-      picture: haubeGestreift.jpg,
-      price: '23€',
-      productInfo: 'To be added soon',
-    },
+const sql = postgres();
 
-    {
-      productName: 'BEANIE BLUE',
-      picture: haubeBlau.jpg,
-      price: '20€',
-      productInfo: 'To be added soon',
-    },
+function camelcaseRecords(records) {
+  return records.map((record) => camelcaseKeys(record));
+}
 
-    {
-      productName: 'COOL GREY',
-      picture: glovesGrau.jpg,
-      price: '15€',
-      productInfo: 'To be added soon',
-    },
+export async function getProducts() {
+  const products = await sql`SELECT * FROM products`;
+  return camelcaseRecords(products);
+}
 
-    {
-      productName: 'SUNNY METALLIC',
-      picture: glovesGelb.jpg,
-      price: '18€',
-      productInfo: 'To be added soon',
-    },
-
-    {
-      productName: 'FLASHY MITTENS',
-      picture: flashyMittens.jpg,
-      price: '15€',
-      productInfo: 'To be added soon',
-    },
-
-    {
-      productName: 'WHITE MOHAIR',
-      picture: schalWeiss.jpg,
-      price: '22€',
-      productInfo: 'To be added soon',
-    },
-
-    {
-      productName: 'LOOP SMART',
-      picture: schalTube.jpg,
-      price: '20€',
-      productInfo: 'To be added soon',
-    },
-
-    {
-      productName: 'SCARF AND STRIPES',
-      picture: schalGestreift.jpg,
-      price: '22€',
-      productInfo: 'To be added soon',
-    },
-  ];
+export async function getSingleProduct(id) {
+  const product = await sql`SELECT * FROM products WHERE id = ${id}`;
+  return camelcaseRecords(product)[0];
 }

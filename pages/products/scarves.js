@@ -26,32 +26,38 @@ export default function Scarves() {
       <h1 css={textStyles}>SCARVES</h1>
       <div css={productStyles}>
         <div>
-          <Image
-            src="/pictures/schalWeiss.jpg"
-            height={144}
-            width={144}
-            alt="schalWeiss"
-          />
+          <Link href="/products/7">
+            <Image
+              src="/pictures/7.jpg"
+              height={144}
+              width={144}
+              alt="schalWeiss"
+            />
+          </Link>
           <p>WHITE MOHAIR</p>
         </div>
 
         <div>
-          <Image
-            src="/pictures/schalTube.jpg"
-            height={144}
-            width={144}
-            alt="schalTube"
-          />
+          <Link href="/products/8">
+            <Image
+              src="/pictures/8.jpg"
+              height={144}
+              width={144}
+              alt="schalTube"
+            />
+          </Link>
           <p>LOOP SMART</p>
         </div>
 
         <div>
-          <Image
-            src="/pictures/schalGestreift.jpg"
-            height={144}
-            width={144}
-            alt="schalGestreift"
-          />
+          <Link href="/products/9">
+            <Image
+              src="/pictures/9.jpg"
+              height={144}
+              width={144}
+              alt="schalGestreift"
+            />
+          </Link>
           <p>SCARF AND STRIPES</p>
         </div>
       </div>

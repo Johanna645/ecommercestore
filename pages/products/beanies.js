@@ -26,9 +26,9 @@ export default function Beanies() {
       <h1 css={textStyles}>BEANIES</h1>
       <div css={productStyles}>
         <div>
-          <Link href="/beanieBlue">
+          <Link href="/products/2">
             <Image
-              src="/pictures/haubeBlau.jpg"
+              src="/pictures/2.jpg"
               height={144}
               width={144}
               alt="haubeBlau"
@@ -38,9 +38,9 @@ export default function Beanies() {
         </div>
 
         <div>
-          <Link href="/beanieBee">
+          <Link href="/products/3">
             <Image
-              src="/pictures/haubeGestreift.jpg"
+              src="/pictures/3.jpg"
               height={144}
               width={144}
               alt="haubeGestreift"
@@ -50,9 +50,9 @@ export default function Beanies() {
         </div>
 
         <div>
-          <Link href="/beanieBasic">
+          <Link href="/products/1">
             <Image
-              src="/pictures/haubeGrau.jpg"
+              src="/pictures/1.jpg"
               height={144}
               width={144}
               alt="haubeGrau"

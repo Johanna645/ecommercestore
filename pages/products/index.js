@@ -3,8 +3,6 @@ import Head from 'next/head';
 import Layout from '../../components/Layout';
 import Image from 'next/image';
 import { css } from '@emotion/react';
-//import postgres from 'postgres';
-//require('dotenv-safe').config();
 
 const productStyles = css`
   display: grid;
@@ -44,7 +42,7 @@ export default function Products(props) {
           <ul>
             {props.products.map((product) => (
               <li key={`product-${product.productName}`}>
-                <Link href={`/products/${product.productName}`}>
+                <Link href={`/products/${product.id}`}>
                   <a>
                     {product.id}
                     <Image

@@ -26,32 +26,38 @@ export default function Gloves() {
       <h1 css={textStyles}>GLOVES</h1>
       <div css={productStyles}>
         <div>
-          <Image
-            src="/pictures/glovesGelb.jpg"
-            height={144}
-            width={144}
-            alt="glovesGelb"
-          />
+          <Link href="/products/6">
+            <Image
+              src="/pictures/6.jpg"
+              height={144}
+              width={144}
+              alt="glovesGelb"
+            />
+          </Link>
           <p>SUNNY METALLIC</p>
         </div>
 
         <div>
-          <Image
-            src="/pictures/glovesGrau.jpg"
-            height={144}
-            width={144}
-            alt="glovesGrau"
-          />
+          <Link href="/products/4">
+            <Image
+              src="/pictures/4.jpg"
+              height={144}
+              width={144}
+              alt="glovesGrau"
+            />
+          </Link>
           <p>COOL GREY</p>
         </div>
 
         <div>
-          <Image
-            src="/pictures/flashyMittens.jpg"
-            height={144}
-            width={144}
-            alt="flashyMittens"
-          />
+          <Link href="/products/5">
+            <Image
+              src="/pictures/5.jpg"
+              height={144}
+              width={144}
+              alt="flashyMittens"
+            />
+          </Link>
           <p>FLASHY MITTENS</p>
         </div>
       </div>

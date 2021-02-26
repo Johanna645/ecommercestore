@@ -9,6 +9,7 @@ import { useState } from 'react';
 import {
   incrementAmountByProduct,
   setAmountCookieClientSide,
+  decreaseAmountByProduct,
 } from '../../util/cookies';
 
 const productStyles = css`
@@ -39,7 +40,7 @@ export default function SingleProduct(props) {
   }, [amount]);
 
   const amountForProduct = amount.find(
-    (productAmount) => productAmount.productName === props.product.productName,
+    (productAmount) => productAmount.id === props.product.id,
   );
 
   return (
@@ -59,13 +60,15 @@ export default function SingleProduct(props) {
         <div>
           <textbox>
             <h2>{props.product.productName}</h2>
-            <p>{props.product.price}</p>
-            {/* <p>{props.productInfo}</p>  column is still missing from the table */}
+            <p>{props.product.productPrice}€</p>
+            <p>{props.product.productInfo}</p>
           </textbox>
 
           <div>
             {/* show the value of visits. "?."" is a test if value is null or undefined and won't cause an error, but just return undefined if there is nothing */}
-            <div>Amount of products: {amountForProduct?.amount || 0}</div>{' '}
+            <div>
+              Amount of products chosen: {amountForProduct?.amount || 0}
+            </div>{' '}
             {/*  can i get this into a button? */}
             <button
               onClick={() => {
@@ -75,24 +78,24 @@ export default function SingleProduct(props) {
                 );
 
                 setAmount(newAmount);
+                setAmountCookieClientSide(amount);
               }}
-            >
-              increase amount
-            </button>
-            <button /* onClick={() => {
-              setCount(count + 1);
-              // setPositiveValues(getPositiveValues(count, count2));
-            }} */
             >
               +
             </button>
             <button /* onClick then somehow send info to the cart */>
               Add to cart
             </button>
-            <button /* onClick={() => {
-              setCount(count - 1);
-              // setPositiveValues(getPositiveValues(count, count2));
-            }} */
+            <button
+              onClick={() => {
+                const newAmount = decreaseAmountByProduct(
+                  amount,
+                  props.product.productName,
+                );
+
+                setAmount(newAmount);
+                setAmountCookieClientSide(amount);
+              }}
             >
               -
             </button>

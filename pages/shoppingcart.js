@@ -3,6 +3,9 @@ import { css } from '@emotion/react';
 import Link from 'next/link';
 import Layout from '../components/Layout';
 import Image from 'next/image';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import Cookies from 'js-cookie';
 
 const cartStyle = css`
   margin-top: 50px;
@@ -28,7 +31,43 @@ const cartStyle = css`
   }
 `;
 
-export default function Shoppingcart() {
+export async function getServerSideProps() {
+  const { getProducts } = await import('../util/database');
+  const products = await getProducts();
+
+  return { props: { products: products } };
+}
+
+export default function Shoppingcart(props) {
+  const [grandTotal, setGrandTotal] = useState(8);
+  const finalCart = [{}];
+
+  // function sumProProduct() {
+  //   const productAmount = Cookies.amount.find(
+  //     (product) => product.productId === props.product.id,
+  // );
+
+  //   const sum = props.product.productPrice * productAmount;
+
+  //   finalCart.push({
+  //     productName: props.product.productName,
+  //     productPrice: props.product.productPrice,
+  //     quantity: productAmount,
+  //     total: sum,
+  //   });
+  //   return sum;
+  // }
+
+  function calculateGrandTotal() {
+    props.products.map((product) => {
+      const total = sumProProduct(product);
+      const newGrandTotal = grandTotal + total;
+      setGrandTotal(newGrandTotal);
+
+      return grandTotal;
+    });
+  }
+
   return (
     <Layout>
       <Head>
@@ -48,11 +87,13 @@ export default function Shoppingcart() {
             <th>PRICE</th>
             <th>QUANTITY</th>
             <th>TOTAL</th>
-            <tr />
-            <tr />
-            <tr />
-            <tr />
           </table>
+          {/* <div>
+            {finalCart.map((product) => (
+              <tr key={productName}></tr>
+            ))}
+            ;
+          </div> */}
           <table>
             <tr />
             <tr />
@@ -64,7 +105,7 @@ export default function Shoppingcart() {
             <tr />
             <tr />
             <tr>
-              <strong>GRAND TOTAL: €</strong>
+              <strong>GRAND TOTAL: {calculateGrandTotal()} €</strong>
             </tr>
           </table>
         </div>

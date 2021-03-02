@@ -39,9 +39,16 @@ export default function SingleProduct(props) {
     Cookies.set('amount', amount);
   }, [amount]);
 
-  const amountForProduct = amount.find(
-    (productAmount) => productAmount.id === props.product.id,
-  );
+  const amountForProductCookie = amount.find(
+    (productFromCookie) =>
+      console.log(
+        'abc',
+        amount,
+        productFromCookie.productId,
+        props.product.id,
+      ) || productFromCookie.productId === props.product.id,
+  ); // here has to be something wrong, it's logging out array of objects with all products and their amount. So this is like the entire cart cookie.
+  console.log(amount);
 
   return (
     <Layout>
@@ -66,35 +73,38 @@ export default function SingleProduct(props) {
 
           <div>
             {/* show the value of visits. "?."" is a test if value is null or undefined and won't cause an error, but just return undefined if there is nothing */}
-            <div>
-              Amount of products chosen: {amountForProduct?.amount || 0}
-            </div>{' '}
-            {/*  can i get this into a button? */}
+            <div>Current amount: {amountForProductCookie?.amount || 0}</div>{' '}
+            {/* current amount is not updating. it is all the time 0 */}
             <button
               onClick={() => {
                 const newAmount = incrementAmountByProduct(
                   amount,
-                  props.product.productName,
+                  props.product.id,
+                  console.log('props', props.product),
                 );
 
                 setAmount(newAmount);
-                setAmountCookieClientSide(amount);
+                // setAmountCookieClientSide(amount);
               }}
             >
               +
             </button>
-            <button /* onClick then somehow send info to the cart */>
-              Add to cart
+            <button
+              onClick={() => {
+                setAmountCookieClientSide(amount);
+              }}
+            >
+              Add to cart {/* this doesn't seem to do anything  */}
             </button>
             <button
               onClick={() => {
                 const newAmount = decreaseAmountByProduct(
                   amount,
-                  props.product.productName,
+                  props.product.id,
                 );
 
                 setAmount(newAmount);
-                setAmountCookieClientSide(amount);
+                // setAmountCookieClientSide(amount);
               }}
             >
               -

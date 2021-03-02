@@ -2,6 +2,7 @@ import Head from 'next/head';
 import { css } from '@emotion/react';
 import Layout from '../components/Layout';
 import Link from 'next/link';
+// import { calculateGrandTotal } from './shoppingcart';
 
 const textStyles = css`
   font-family: Arial, Helvetica, sans-serif;
@@ -31,6 +32,10 @@ const formStyle = css`
 `;
 
 export default function Checkout() {
+  function redirect() {
+    window.location.href = '/thanks';
+  }
+
   return (
     <Layout>
       <Head>
@@ -39,7 +44,7 @@ export default function Checkout() {
 
       <div>
         <div css={textStyles}>
-          <h2>The grand total of your order is: </h2>
+          {/* <h2>The grand total of your order is: {calculateGrandTotal} €</h2> */}
 
           <h3>Please fill out the form underneath to continue.</h3>
         </div>
@@ -110,9 +115,9 @@ export default function Checkout() {
             <br />
             <br />
             <div>
-              <Link href="/thanks">
-                <button type="button">SUBMIT</button>
-              </Link>
+              <button type="button" onClick={redirect()}>
+                SUBMIT
+              </button>
             </div>
           </div>
         </div>

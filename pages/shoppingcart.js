@@ -3,9 +3,13 @@ import { css } from '@emotion/react';
 import Link from 'next/link';
 import Layout from '../components/Layout';
 import Image from 'next/image';
-import { useEffect } from 'react';
-import { useState } from 'react';
 import Cookies from 'js-cookie';
+import {
+  incrementAmountByProduct,
+  setAmountCookieClientSide,
+  decreaseAmountByProduct,
+} from '../util/cookies';
+import { getAmountOfProductsInCart } from '../util/cookies';
 
 const cartStyle = css`
   margin-top: 50px;
@@ -31,45 +35,30 @@ const cartStyle = css`
   }
 `;
 
-export async function getServerSideProps() {
-  const { getProducts } = await import('../util/database');
-  const products = await getProducts();
-
-  return { props: { products: products } };
-}
-
 export default function Shoppingcart(props) {
-  const [grandTotal, setGrandTotal] = useState(8);
-  const finalCart = [{}];
-
-  // function sumProProduct() {
-  //   const productAmount = Cookies.amount.find(
-  //     (product) => product.productId === props.product.id,
-  // );
-
-  //   const sum = props.product.productPrice * productAmount;
-
-  //   finalCart.push({
-  //     productName: props.product.productName,
-  //     productPrice: props.product.productPrice,
-  //     quantity: productAmount,
-  //     total: sum,
-  //   });
-  //   return sum;
-  // }
+  let total = 0;
 
   function calculateGrandTotal() {
-    props.products.map((product) => {
-      const total = sumProProduct(product);
-      const newGrandTotal = grandTotal + total;
-      setGrandTotal(newGrandTotal);
-
-      return grandTotal;
+    props.finalCart.forEach((productFromCookie) => {
+      total =
+        total + productFromCookie.productPrice * productFromCookie.quantity;
     });
+    const grandTotal = total + 8;
+    return grandTotal;
   }
 
+  // function handleClickToRemove() {
+  // const newFinalCart = props.finalCart.filter(function (productToBeRemoved) {
+  //   return product.id !== productToBeRemoved.id;
+
+  //   const newCookie = JSON.parse(Cookies.get('amount')).filter(
+  //     (cookieProduct) => cookieProduct.id !== id,
+  //   );
+  //   Cookies.set('amount', JSON.stringify(newCookie));
+  // });
+
   return (
-    <Layout>
+    <Layout cartCounter={getAmountOfProductsInCart()}>
       <Head>
         <title>Cart</title>
       </Head>
@@ -83,17 +72,33 @@ export default function Shoppingcart(props) {
 
         <div>
           <table>
-            <th>PRODUCT</th>
-            <th>PRICE</th>
-            <th>QUANTITY</th>
-            <th>TOTAL</th>
+            <thead>
+              <tr>
+                <th>PRODUCT</th>
+                <th>PRICE</th>
+                <th>QUANTITY</th>
+                <th>TOTAL</th>
+              </tr>
+            </thead>
+            <tbody>
+              {props.finalCart.map((productFromCookie) => (
+                <tr key={productFromCookie.productId}>
+                  <td>{productFromCookie.productName}</td>
+                  <td>{productFromCookie.productPrice}</td>
+                  <td>{productFromCookie.quantity}</td>
+                  <td>
+                    <button
+                      // onClick={() => handleClickToRemove(productFromCookie.productId)}
+                      value="Remove"
+                    >
+                      REMOVE FROM CART
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
           </table>
-          {/* <div>
-            {finalCart.map((product) => (
-              <tr key={productName}></tr>
-            ))}
-            ;
-          </div> */}
+
           <table>
             <tr />
             <tr />
@@ -117,4 +122,32 @@ export default function Shoppingcart(props) {
       </div>
     </Layout>
   );
+}
+
+export async function getServerSideProps(context) {
+  const { getProducts } = await import('../util/database');
+  const products = await getProducts();
+
+  const amount = context.req.cookies.amount;
+  const cart = amount ? JSON.parse(amount) : [];
+
+  const finalCart = [];
+
+  cart.forEach((productFromCookie) => {
+    const singleProduct = products.find(
+      (product) => product.id === productFromCookie.productId,
+    );
+    if (singleProduct !== undefined) {
+      const productAndAll = {
+        productId: productFromCookie.productId,
+        productName: singleProduct.productName,
+        productPrice: singleProduct.productPrice,
+        quantity: productFromCookie.amount,
+      };
+      if (productFromCookie.amount !== 0) {
+        finalCart.push(productAndAll);
+      }
+    }
+  });
+  return { props: { finalCart: finalCart } };
 }

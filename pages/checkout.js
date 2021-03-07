@@ -2,6 +2,9 @@ import Head from 'next/head';
 import { css } from '@emotion/react';
 import Layout from '../components/Layout';
 import Link from 'next/link';
+import Cookies from 'js-cookie';
+import { getAmountOfProductsInCart } from '../util/cookies';
+// import { clear } from 'console'; // where has this come from?!
 // import { calculateGrandTotal } from './shoppingcart';
 
 const textStyles = css`
@@ -32,12 +35,17 @@ const formStyle = css`
 `;
 
 export default function Checkout() {
+  function clearCookies() {
+    Cookies.remove('amount');
+  }
+
   function redirect() {
+    clearCookies();
     window.location.href = '/thanks';
   }
 
   return (
-    <Layout>
+    <Layout cartCounter={getAmountOfProductsInCart()}>
       <Head>
         <title>Checkout</title>
       </Head>
@@ -52,15 +60,13 @@ export default function Checkout() {
           <div>
             <h2>Shipping:</h2>
             <br />
-
             <p>
-              <div for="first_name">First Name</div>
-
+              <div for="first_name">First Name </div>
               <input type="text" name="first_name" />
             </p>
+
             <p>
               <div for="last_name">Last Name</div>
-
               <input type="text" name="last_name" />
             </p>
 
@@ -115,13 +121,27 @@ export default function Checkout() {
             <br />
             <br />
             <div>
-              <button type="button" onClick={redirect()}>
-                SUBMIT
-              </button>
+              <Link href="/thanks">
+                <button type="button" onClick={redirect()}>
+                  {' '}
+                  SUBMIT
+                </button>
+              </Link>
             </div>
           </div>
         </div>
       </div>
     </Layout>
   );
+}
+
+export async function getServerSideProps(context) {
+  const amount = context.req.cookies.amount;
+  const cart = amount ? JSON.parse(amount) : [];
+
+  return {
+    props: {
+      cart: cart,
+    },
+  };
 }

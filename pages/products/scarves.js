@@ -3,6 +3,8 @@ import Head from 'next/head';
 import Layout from '../../components/Layout';
 import Image from 'next/image';
 import { css } from '@emotion/react';
+import Cookies from 'js-cookie';
+import { getAmountOfProductsInCart } from '../../util/cookies';
 
 const productStyles = css`
   display: grid;
@@ -19,7 +21,7 @@ const textStyles = css`
 
 export default function Scarves() {
   return (
-    <Layout>
+    <Layout cartCounter={getAmountOfProductsInCart()}>
       <Head>
         <title>Scarves</title>
       </Head>

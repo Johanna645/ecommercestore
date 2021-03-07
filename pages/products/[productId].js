@@ -11,6 +11,7 @@ import {
   setAmountCookieClientSide,
   decreaseAmountByProduct,
 } from '../../util/cookies';
+import { getAmountOfProductsInCart } from '../../util/cookies';
 
 const productStyles = css`
   display: grid;
@@ -31,27 +32,32 @@ const productStyles = css`
 `;
 
 export default function SingleProduct(props) {
+  const [cartCounter, setCartCounter] = useState(getAmountOfProductsInCart());
+
   // state variable with the value from the cookie read in getServerSideProps
   const [amount, setAmount] = useState(props.productCookieValue);
+
+  // function handleCartCounter() {
+  //   amount.forEach((productFromCookie) => {
+  //     const total = cartCounter + productFromCookie.amount;
+  //     setCartCounter(total);
+  //   });
+
+  //   return cartCounter;
+  // }
 
   // every time the state variable updates, set a new value to the cookie, sent also to server when refreshed or loaded
   useEffect(() => {
     Cookies.set('amount', amount);
+    setCartCounter(getAmountOfProductsInCart());
   }, [amount]);
 
   const amountForProductCookie = amount.find(
-    (productFromCookie) =>
-      console.log(
-        'abc',
-        amount,
-        productFromCookie.productId,
-        props.product.id,
-      ) || productFromCookie.productId === props.product.id,
-  ); // here has to be something wrong, it's logging out array of objects with all products and their amount. So this is like the entire cart cookie.
-  console.log(amount);
+    (productFromCookie) => productFromCookie.productId === props.product.id,
+  );
 
   return (
-    <Layout>
+    <Layout cartCounter={cartCounter}>
       <Head>
         <title>{props.product.productName}</title>
       </Head>
@@ -73,29 +79,31 @@ export default function SingleProduct(props) {
 
           <div>
             {/* show the value of visits. "?."" is a test if value is null or undefined and won't cause an error, but just return undefined if there is nothing */}
-            <div>Current amount: {amountForProductCookie?.amount || 0}</div>{' '}
-            {/* current amount is not updating. it is all the time 0 */}
+            <div>
+              Current amount chosen: {amountForProductCookie?.amount || 0}
+            </div>{' '}
             <button
               onClick={() => {
                 const newAmount = incrementAmountByProduct(
                   amount,
                   props.product.id,
-                  console.log('props', props.product),
+                  // console.log('props', props.product),
                 );
 
                 setAmount(newAmount);
-                // setAmountCookieClientSide(amount);
+
+                // handleCartCounter();
               }}
             >
-              +
+              ADD TO CART
             </button>
-            <button
+            {/* <button
               onClick={() => {
-                setAmountCookieClientSide(amount);
+                handleCartCounter();
               }}
             >
-              Add to cart {/* this doesn't seem to do anything  */}
-            </button>
+              Add to cart
+            </button> */}
             <button
               onClick={() => {
                 const newAmount = decreaseAmountByProduct(
@@ -104,10 +112,9 @@ export default function SingleProduct(props) {
                 );
 
                 setAmount(newAmount);
-                // setAmountCookieClientSide(amount);
               }}
             >
-              -
+              REMOVE FROM CART
             </button>
           </div>
         </div>
@@ -122,8 +129,6 @@ export async function getServerSideProps(context) {
   const id = context.query.productId;
 
   const product = await getSingleProduct(id);
-
-  // const product = products.find((product) => product.productName === name);
 
   // This is the first thing that actually happens. Cookie is read the first time, JSON.parse reads a complex value, and if there is no value, it will start an empty array - so to props is passed on either the value of the visits or an empty array
   const amount = context.req.cookies.amount;

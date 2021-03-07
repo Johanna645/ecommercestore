@@ -2,6 +2,13 @@ import Link from 'next/link';
 import Head from 'next/head';
 import { css } from '@emotion/react';
 import Image from 'next/image';
+import { useState } from 'react';
+import Cookies from 'js-cookie';
+import {
+  incrementAmountByProduct,
+  setAmountCookieClientSide,
+  decreaseAmountByProduct,
+} from '../util/cookies';
 
 const headerStyles = css`
   display: grid;
@@ -103,6 +110,7 @@ export default function Layout(props) {
                 <Link href="/shoppingcart">
                   <a>CART</a>
                 </Link>
+                <span>{props.cartCounter}</span>
               </p>
             </div>
           </div>

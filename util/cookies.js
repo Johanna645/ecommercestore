@@ -1,5 +1,21 @@
 import Cookies from 'js-cookie';
 
+export function getAmountOfProductsInCart() {
+  let cartCounter = 0;
+  let cartCookie = Cookies.get('amount');
+  if (cartCookie != null) {
+    console.log('cartCookie is', cartCookie);
+
+    cartCookie = JSON.parse(cartCookie);
+    for (let i = 0; i < cartCookie.length; i++) {
+      cartCounter = cartCounter + cartCookie[i].amount;
+      console.log(cartCounter);
+      console.log(cartCookie[i].amount);
+    }
+    return cartCounter;
+  }
+  return;
+}
 // to keep track of the amount for a single product
 
 export function incrementAmountByProduct(cartCookieValue, productId) {
@@ -27,13 +43,9 @@ export function incrementAmountByProduct(cartCookieValue, productId) {
   });
 }
 
-/* export function setAmountCookieClientSide(newAmount) {
-  Cookies.set('amount', newAmount);
-} does this have to be here or at the very end?*/
-
-export function decreaseAmountByProduct(cartCookieValue, productId) {
+export function decreaseAmountByProduct(cartCookieValue, id) {
   const isIdInArray = cartCookieValue.some(
-    (productAmount) => productAmount.productId === productId,
+    (productAmount) => productAmount.productId === id,
   );
   // if the array doesn't have the match for the productName, add a new array element at the end
   // if there is a match, this if is jumped over and the next return goes on
@@ -41,25 +53,28 @@ export function decreaseAmountByProduct(cartCookieValue, productId) {
     return [
       ...cartCookieValue,
       {
-        productId: productId,
+        productId: id,
         amount: 0,
       },
     ];
   }
 
-  return cartCookieValue.map((productAmount) => {
-    if (productId === productAmount.productId) {
-      if (productAmount.amount === 0) {
-        return productAmount;
+  return cartCookieValue.filter((productAmount) => {
+    if (id === productAmount.productId) {
+      if (productAmount.amount === 1) {
+        const newCookie = JSON.parse(Cookies.get('amount')).filter(
+          (cookieProduct) => cookieProduct.id !== id,
+        );
+        Cookies.set('amount', JSON.stringify(newCookie));
+        return false; //this returns nothing
       } else {
         productAmount.amount = productAmount.amount - 1;
       }
     }
-    return productAmount;
+    return true; //this returns productAmount
   });
 }
 
-// which cookie is set here, the cart or is there now a cookie for the single product?
 export function setAmountCookieClientSide(newAmount) {
   Cookies.set('amount', newAmount);
 }

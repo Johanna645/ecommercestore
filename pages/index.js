@@ -5,6 +5,8 @@ import Link from 'next/link';
 import Layout from '../components/Layout';
 import Image from 'next/image';
 import { css } from '@emotion/react';
+import Cookies from 'js-cookie';
+import { getAmountOfProductsInCart } from '../util/cookies';
 
 const landingPage = css`
   p {
@@ -31,34 +33,48 @@ const landingPage = css`
 `;
 
 export default function Home() {
+  // function getAmountOfProductsInCart() {
+  //   let cartCounter = 0;
+  //   let cartCookie = Cookies.get('amount');
+  //   if (cartCookie !== undefined) {
+  //     cartCookie = JSON.parse(cartCookie);
+  //     for (let i = 0; i < cartCookie.length; i++) {
+  //       cartCounter = cartCounter + cartCookie[i].amount;
+  //       console.log(cartCounter);
+  //       console.log(cartCookie[i].amount);
+  //     }
+  //   }
+  //   return cartCounter;
+  // }
+
   return (
-    <Layout>
+    // 3 is just an example for now
+    <Layout cartCounter={getAmountOfProductsInCart()}>
       <Head>
         <title>Haystack Needlework</title>
       </Head>
-      <body>
-        <div css={landingPage}>
-          <div>
-            <Image
-              src="/pictures/yarnOnTable.jpg"
-              alt="yarnOnTable"
-              height={600}
-              width={1500}
-              //layout="fill"
-              //objectFit="contain"
-              //objectPosition="center"
-            />
-          </div>
-          <div>
-            <p>WHERE TRADITION MEETS TREND</p>
-          </div>
-          <div>
-            <Link href="/products">
-              <button type="button">SHOP NOW</button>
-            </Link>
-          </div>
+
+      <div css={landingPage}>
+        <div>
+          <Image
+            src="/pictures/yarnOnTable.jpg"
+            alt="yarnOnTable"
+            height={600}
+            width={1500}
+            //layout="fill"
+            //objectFit="contain"
+            //objectPosition="center"
+          />
         </div>
-      </body>
+        <div>
+          <p>WHERE TRADITION MEETS TREND</p>
+        </div>
+        <div>
+          <Link href="/products">
+            <button type="button">SHOP NOW</button>
+          </Link>
+        </div>
+      </div>
     </Layout>
   );
 }

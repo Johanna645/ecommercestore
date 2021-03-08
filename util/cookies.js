@@ -47,31 +47,20 @@ export function decreaseAmountByProduct(cartCookieValue, id) {
   const isIdInArray = cartCookieValue.some(
     (productAmount) => productAmount.productId === id,
   );
-  // if the array doesn't have the match for the productName, add a new array element at the end
-  // if there is a match, this if is jumped over and the next return goes on
-  if (!isIdInArray) {
-    return [
-      ...cartCookieValue,
-      {
-        productId: id,
-        amount: 0,
-      },
-    ];
-  }
 
   return cartCookieValue.filter((productAmount) => {
     if (id === productAmount.productId) {
-      if (productAmount.amount === 1) {
-        const newCookie = JSON.parse(Cookies.get('amount')).filter(
+      if (productAmount.amount === 1 || productAmount.amount === 0) {
+        const newCookie = cartCookieValue.filter(
           (cookieProduct) => cookieProduct.id !== id,
         );
         Cookies.set('amount', JSON.stringify(newCookie));
-        return false; //this returns nothing
+        return false; // this returns nothing
       } else {
         productAmount.amount = productAmount.amount - 1;
       }
     }
-    return true; //this returns productAmount
+    return true; // this returns productAmount
   });
 }
 

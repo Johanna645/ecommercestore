@@ -110,7 +110,7 @@ export default function Layout(props) {
                 <Link href="/shoppingcart">
                   <a>CART</a>
                 </Link>
-                <span>{props.cartCounter}</span>
+                <span> {props.cartCounter}</span>
               </p>
             </div>
           </div>

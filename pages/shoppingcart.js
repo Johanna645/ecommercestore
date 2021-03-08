@@ -10,6 +10,7 @@ import {
   decreaseAmountByProduct,
 } from '../util/cookies';
 import { getAmountOfProductsInCart } from '../util/cookies';
+import { calculateGrandTotal } from '../util/calculateGrandTotal';
 
 const cartStyle = css`
   margin-top: 50px;
@@ -36,26 +37,14 @@ const cartStyle = css`
 `;
 
 export default function Shoppingcart(props) {
-  let total = 0;
-
-  function calculateGrandTotal() {
-    props.finalCart.forEach((productFromCookie) => {
-      total =
-        total + productFromCookie.productPrice * productFromCookie.quantity;
-    });
-    const grandTotal = total + 8;
-    return grandTotal;
+  console.log(props);
+  function handleClickToRemove(productId) {
+    const newCookie = JSON.parse(Cookies.get('amount')).filter(
+      (product) => product.productId !== productId,
+    );
+    Cookies.set('amount', JSON.stringify(newCookie));
+    return false; // returns nothing, function is supposed just to filter and set the cookie anew
   }
-
-  // function handleClickToRemove() {
-  // const newFinalCart = props.finalCart.filter(function (productToBeRemoved) {
-  //   return product.id !== productToBeRemoved.id;
-
-  //   const newCookie = JSON.parse(Cookies.get('amount')).filter(
-  //     (cookieProduct) => cookieProduct.id !== id,
-  //   );
-  //   Cookies.set('amount', JSON.stringify(newCookie));
-  // });
 
   return (
     <Layout cartCounter={getAmountOfProductsInCart()}>
@@ -76,7 +65,7 @@ export default function Shoppingcart(props) {
               <tr>
                 <th>PRODUCT</th>
                 <th>PRICE</th>
-                <th>QUANTITY</th>
+                <th>AMOUNT</th>
                 <th>TOTAL</th>
               </tr>
             </thead>
@@ -85,10 +74,12 @@ export default function Shoppingcart(props) {
                 <tr key={productFromCookie.productId}>
                   <td>{productFromCookie.productName}</td>
                   <td>{productFromCookie.productPrice}</td>
-                  <td>{productFromCookie.quantity}</td>
+                  <td>{productFromCookie.amount}</td>
                   <td>
                     <button
-                      // onClick={() => handleClickToRemove(productFromCookie.productId)}
+                      onClick={() =>
+                        handleClickToRemove(productFromCookie.productId)
+                      }
                       value="Remove"
                     >
                       REMOVE FROM CART
@@ -110,7 +101,9 @@ export default function Shoppingcart(props) {
             <tr />
             <tr />
             <tr>
-              <strong>GRAND TOTAL: {calculateGrandTotal()} €</strong>
+              <strong>
+                GRAND TOTAL: {calculateGrandTotal(props.finalCart)} €
+              </strong>
             </tr>
           </table>
         </div>
@@ -142,7 +135,7 @@ export async function getServerSideProps(context) {
         productId: productFromCookie.productId,
         productName: singleProduct.productName,
         productPrice: singleProduct.productPrice,
-        quantity: productFromCookie.amount,
+        amount: productFromCookie.amount,
       };
       if (productFromCookie.amount !== 0) {
         finalCart.push(productAndAll);

@@ -39,10 +39,10 @@ export default function Checkout() {
     Cookies.remove('amount');
   }
 
-  function redirect() {
-    clearCookies();
-    window.location.href = '/thanks';
-  }
+  // function redirect() {
+  //   clearCookies();
+  //   window.location.href = '/thanks';
+  // }
 
   return (
     <Layout cartCounter={getAmountOfProductsInCart()}>
@@ -122,7 +122,7 @@ export default function Checkout() {
             <br />
             <div>
               <Link href="/thanks">
-                <button type="button" onClick={redirect()}>
+                <button type="button" onClick={clearCookies()}>
                   {' '}
                   SUBMIT
                 </button>

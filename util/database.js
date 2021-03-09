@@ -1,5 +1,5 @@
 import postgres from 'postgres';
-import { setPostgresDefaultsOnHeroku } from '../util/setPostgresDefaultsOnHeroku';
+import setPostgresDefaultsOnHeroku from './setPostgresDefaultsOnHeroku';
 require('dotenv-safe').config();
 const camelcaseKeys = require('camelcase-keys');
 

@@ -37,7 +37,6 @@ const cartStyle = css`
 `;
 
 export default function Shoppingcart(props) {
-  console.log(props);
   function handleClickToRemove(productId) {
     const newCookie = JSON.parse(Cookies.get('amount')).filter(
       (product) => product.productId !== productId,

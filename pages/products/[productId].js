@@ -37,15 +37,6 @@ export default function SingleProduct(props) {
   // state variable with the value from the cookie read in getServerSideProps
   const [amount, setAmount] = useState(props.productCookieValue);
 
-  // function handleCartCounter() {
-  //   amount.forEach((productFromCookie) => {
-  //     const total = cartCounter + productFromCookie.amount;
-  //     setCartCounter(total);
-  //   });
-
-  //   return cartCounter;
-  // }
-
   // every time the state variable updates, set a new value to the cookie, sent also to server when refreshed or loaded
   useEffect(() => {
     Cookies.set('amount', amount);
@@ -87,23 +78,13 @@ export default function SingleProduct(props) {
                 const newAmount = incrementAmountByProduct(
                   amount,
                   props.product.id,
-                  // console.log('props', props.product),
                 );
 
                 setAmount(newAmount);
-
-                // handleCartCounter();
               }}
             >
               ADD TO CART
             </button>
-            {/* <button
-              onClick={() => {
-                handleCartCounter();
-              }}
-            >
-              Add to cart
-            </button> */}
             <button
               onClick={() => {
                 const newAmount = decreaseAmountByProduct(

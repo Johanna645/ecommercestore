@@ -2,7 +2,6 @@ import Link from 'next/link';
 import Head from 'next/head';
 import { css } from '@emotion/react';
 import Image from 'next/image';
-import { useState } from 'react';
 import Cookies from 'js-cookie';
 import {
   incrementAmountByProduct,

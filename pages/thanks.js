@@ -2,7 +2,6 @@ import Head from 'next/head';
 import { css } from '@emotion/react';
 import Link from 'next/link';
 import Image from 'next/image';
-import Layout from '../components/Layout';
 
 const headerStyles = css`
   display: grid;

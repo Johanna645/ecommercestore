@@ -7,7 +7,7 @@
     "build": "next build",
     "heroku-postbuild": "yarn migrate up && yarn build",
     "start": "next start -p ${PORT:-\"3000\"}",
-    "migrate": "ley"
+    "migrate": "dotenv ley"
   },
   "dependencies": {
     "@emotion/react": "^11.1.5",

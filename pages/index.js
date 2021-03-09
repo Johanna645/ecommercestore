@@ -1,6 +1,4 @@
 import Head from 'next/head';
-import styles from '../styles/Home.module.css';
-
 import Link from 'next/link';
 import Layout from '../components/Layout';
 import Image from 'next/image';
@@ -33,20 +31,6 @@ const landingPage = css`
 `;
 
 export default function Home() {
-  // function getAmountOfProductsInCart() {
-  //   let cartCounter = 0;
-  //   let cartCookie = Cookies.get('amount');
-  //   if (cartCookie !== undefined) {
-  //     cartCookie = JSON.parse(cartCookie);
-  //     for (let i = 0; i < cartCookie.length; i++) {
-  //       cartCounter = cartCounter + cartCookie[i].amount;
-  //       console.log(cartCounter);
-  //       console.log(cartCookie[i].amount);
-  //     }
-  //   }
-  //   return cartCounter;
-  // }
-
   return (
     // 3 is just an example for now
     <Layout cartCounter={getAmountOfProductsInCart()}>
@@ -61,9 +45,6 @@ export default function Home() {
             alt="yarnOnTable"
             height={600}
             width={1500}
-            //layout="fill"
-            //objectFit="contain"
-            //objectPosition="center"
           />
         </div>
         <div>

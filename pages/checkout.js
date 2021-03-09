@@ -4,8 +4,6 @@ import Layout from '../components/Layout';
 import Link from 'next/link';
 import Cookies from 'js-cookie';
 import { getAmountOfProductsInCart } from '../util/cookies';
-// import { clear } from 'console'; // where has this come from?!
-// import { calculateGrandTotal } from './shoppingcart';
 
 const textStyles = css`
   font-family: Arial, Helvetica, sans-serif;
@@ -39,11 +37,6 @@ export default function Checkout() {
     Cookies.remove('amount');
   }
 
-  // function redirect() {
-  //   clearCookies();
-  //   window.location.href = '/thanks';
-  // }
-
   return (
     <Layout cartCounter={getAmountOfProductsInCart()}>
       <Head>
@@ -52,8 +45,6 @@ export default function Checkout() {
 
       <div>
         <div css={textStyles}>
-          {/* <h2>The grand total of your order is: {calculateGrandTotal} €</h2> */}
-
           <h3>Please fill out the form underneath to continue.</h3>
         </div>
         <div css={formStyle}>
@@ -92,7 +83,7 @@ export default function Checkout() {
             <h2>Payment:</h2>
             <br />
             <p>
-              Card {''}
+              Card{' '}
               <select id="card">
                 <option>Master Card</option>
                 <option>Visa</option>

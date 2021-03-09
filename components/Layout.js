@@ -3,11 +3,11 @@ import Head from 'next/head';
 import { css } from '@emotion/react';
 import Image from 'next/image';
 import Cookies from 'js-cookie';
-import {
-  incrementAmountByProduct,
-  setAmountCookieClientSide,
-  decreaseAmountByProduct,
-} from '../util/cookies';
+// import {
+//   incrementAmountByProduct,
+//   setAmountCookieClientSide,
+//   decreaseAmountByProduct,
+// } from '../util/cookies';
 
 const headerStyles = css`
   display: grid;

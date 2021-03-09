@@ -4,13 +4,9 @@ export function getAmountOfProductsInCart() {
   let cartCounter = 0;
   let cartCookie = Cookies.get('amount');
   if (cartCookie != null) {
-    console.log('cartCookie is', cartCookie);
-
     cartCookie = JSON.parse(cartCookie);
     for (let i = 0; i < cartCookie.length; i++) {
       cartCounter = cartCounter + cartCookie[i].amount;
-      console.log(cartCounter);
-      console.log(cartCookie[i].amount);
     }
     return cartCounter;
   }
@@ -44,9 +40,9 @@ export function incrementAmountByProduct(cartCookieValue, productId) {
 }
 
 export function decreaseAmountByProduct(cartCookieValue, id) {
-  const isIdInArray = cartCookieValue.some(
-    (productAmount) => productAmount.productId === id,
-  );
+  // const isIdInArray = cartCookieValue.some(
+  //   (productAmount) => productAmount.productId === id,
+  // );
 
   return cartCookieValue.filter((productAmount) => {
     if (id === productAmount.productId) {

@@ -1,4 +1,4 @@
-import Link from 'next/link';
+// import Link from 'next/link';
 import Head from 'next/head';
 import Layout from '../../components/Layout';
 import Image from 'next/image';
@@ -8,7 +8,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import {
   incrementAmountByProduct,
-  setAmountCookieClientSide,
+  // setAmountCookieClientSide,
   decreaseAmountByProduct,
 } from '../../util/cookies';
 import { getAmountOfProductsInCart } from '../../util/cookies';

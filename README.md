@@ -1,10 +1,8 @@
 This is a mock e-commerce store for handmade knitwear.
 
-First you'll see the landing page, that has a navigation bar with links to all products page, product categories, about page and shopping cart. From both products page and product categories pages you get to click to a single product page, where you are able to add and remove products to/from the cart. Removing products from the cart is possible also on the shopping cart page. On the navigation bar is an updating number of items in the cart, which shows up after the first items are added to cart. Checkout page has inputs for shipping and payment, but it is not authentisized, its submit-button will only link to a 'thank you' page and empties the cookies.
+First you'll see the landing page, that has a navigation bar with links to all products page, product categories, about page and shopping cart. From both products page and product categories pages you get to click to a single product page, where you are able to add and remove products to/from the cart. Removing a product from the cart is possible also on the shopping cart page. On the navigation bar is an updating number of products in the cart, which shows up after the first item is added to cart. The checkout page has inputs for shipping and payment, but it is not authentisized, its submit-button will only link to a 'thank you' page and empties the cookies.
 
-This shop has both static and dynamic pages, uses PostgeSQL database to store the product data and js-cookie library for cookies to manage the shopping cart.
-
-Technologies used: PostgreSQL,
+This shop has both static and dynamic pages, uses PostgeSQL database to store the product data and js-cookie library for cookies to manage the shopping cart. Unit tests were made to test increasing and decreasing product amounts in cart as well as cart sum function, all done using jest.
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
